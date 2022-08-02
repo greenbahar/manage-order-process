@@ -1,6 +1,7 @@
 web:
   build: .
-  working_dir: /go/src
+  working_dir: /go/src/github.com/greenbahar/manage-order-process
+  container_name: orderapp
   ports:
     - "3000:3000"
   volumes:
@@ -9,5 +10,6 @@ web:
     - db
 db:
   image: redis
+  container_name: m-redis
   ports:
     - "6379:6379"
