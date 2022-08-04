@@ -1,15 +1,30 @@
-web:
-  build: .
-  working_dir: /go/src/github.com/greenbahar/manage-order-process
-  container_name: orderapp
-  ports:
-    - "3000:3000"
-  volumes:
-    - .:/go/src
-  links:
-    - db
-db:
-  image: redis
-  container_name: m-redis
-  ports:
-    - "6379:6379"
+version: "2.6"
+
+services:
+  db:
+    image: redis
+    container_name: m-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - order
+#    volumes:
+#      - database_redis:/var/lib/redis/data
+  web:
+    build: .
+    container_name: orderapp
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - order
+#  working_dir: /go/src/github.com/greenbahar/manage-order-process
+#  volumes:
+#    - .:/go/src
+
+networks:
+  order:
+    driver: bridge

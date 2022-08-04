@@ -26,7 +26,7 @@ func GetConfig() (*appConfig, error) {
 func (c *appConfig) LoadConfigFromFile() error {
 	jsonFile, err := ioutil.ReadFile("./config/file/config.json")
 	if err != nil {
-		return err
+		panic(err)
 	}
 	unmarshalErr := json.Unmarshal(jsonFile, &c)
 	if unmarshalErr != nil {

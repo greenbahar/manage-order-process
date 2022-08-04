@@ -1,3 +1,3 @@
 #!/bin/bash
 cd ..
-go build
+go build -o ./manage-order-process

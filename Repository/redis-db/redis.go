@@ -27,7 +27,7 @@ func NewRepo() *RedisRepo {
 		MaxActive:   maxActiveConnections,
 		IdleTimeout: idleTimeout,
 		Dial: func() (redis.Conn, error) {
-			conn, err := redis.Dial("tcp", fmt.Sprintf("%s:%s", redisConf.Host, redisConf.Port))
+			conn, err := redis.Dial("tcp", fmt.Sprintf("%s:%s", redisConf.RedisContainer, redisConf.Port))
 			if err != nil {
 				panic(err)
 			}

@@ -21,16 +21,16 @@ func NewHandler(service Service) *Handler {
 func (h *Handler) SaveOrder(c *gin.Context) {
 	body, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, "cannot read the body of the request")
+		c.JSON(http.StatusInternalServerError, "cannot read the body of the request")
 		return
 	}
 	ord := &order.Order{}
 	if err = json.Unmarshal(body, ord); err != nil {
-		c.AbortWithStatusJSON(http.StatusBadRequest, "bad request")
+		c.JSON(http.StatusBadRequest, "bad request")
 		return
 	}
 	if err = h.Service.SaveOrder(ord); err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, "cannot read the body of the request")
+		c.JSON(http.StatusInternalServerError, "cannot read the body of the request")
 		return
 	}
 	c.JSON(http.StatusOK, ord)

@@ -7,12 +7,9 @@ COPY go.mod ./
 COPY go.sum ./
 RUN go mod download
 RUN go mod tidy
-#COPY *.go ./
 COPY . ./
-#RUN go get github.com/greenbahar/manage-order-process
-#RUN go install github.com/greenbahar/manage-order-process
 RUN go build -o /manage-order-process
-ENTRYPOINT [ "/manage-order-process" ]
-
 EXPOSE 3000
 CMD [ "/manage-order-process" ]
+
+#ENTRYPOINT [ "/manage-order-process" ]

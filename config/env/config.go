@@ -7,9 +7,10 @@ import (
 )
 
 const (
-	redis_database_url = "REDIS_URL"
-	redis_host         = "REDIS_HOST"
-	redis_port         = "REDIS_PORT"
+	redis_database_url   = "REDIS_URL"
+	redis_host           = "REDIS_HOST"
+	redis_port           = "REDIS_PORT"
+	redis_container_name = "REDIS_CONTAINER_NAME"
 )
 
 func init() {
@@ -19,9 +20,10 @@ func init() {
 }
 
 type RedisConfig struct {
-	RedisUrl string
-	Host     string
-	Port     string
+	RedisUrl       string
+	Host           string
+	Port           string
+	RedisContainer string
 }
 
 func GetRedisConfig() *RedisConfig {
@@ -29,5 +31,6 @@ func GetRedisConfig() *RedisConfig {
 		os.Getenv(redis_database_url),
 		os.Getenv(redis_host),
 		os.Getenv(redis_port),
+		os.Getenv(redis_container_name),
 	}
 }
